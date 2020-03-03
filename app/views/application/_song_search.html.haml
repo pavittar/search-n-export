@@ -1,0 +1,17 @@
+.well.well-sm
+  = search_form_for @q1, as: :q1, url: request.path, class: 'form-inline' do |f|
+    = f.search_field :title_cont, placeholder: 'Title'
+    = f.search_field :author_first_name_or_author_last_name_cont, placeholder: 'Author name'
+
+    = f.submit 'Filter', class: 'btn btn-primary'
+    = link_to 'Reset', request.path, class: 'btn btn-default'
+
+
+  = form_tag songs_export_to_csv_index_path, class: 'form-inline export-to-csv-async' do |f|
+    - params[:q1] && params[:q1].each do |k,v|
+      = hidden_field_tag "q[#{k}]", v
+
+    Leave blank to export all
+    %br
+    = select_tag 'csv_fields[]', options_for_select(ExportToCSVService::SongFields.keys), multiple: true
+    = submit_tag 'Export', class: 'btn btn-success valign-top'

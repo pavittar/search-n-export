@@ -1,0 +1,14 @@
+@import "bootstrap";
+@import "rails_bootstrap_forms";
+@import "authors";
+@import "songs";
+@import "pages";
+//@import "scaffolds";
+
+.valign-top {
+  vertical-align: top;
+}
+
+.pagination {
+  margin: 0;
+}

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: Marceline
+  last_name: Mayert
+  created_at: "2020-02-29 00:00:00"
+
+two:
+  first_name: Rosendo
+  last_name: Carter
+  created_at: "2020-02-28 00:00:00"

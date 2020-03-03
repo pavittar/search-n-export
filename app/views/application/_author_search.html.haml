@@ -1,0 +1,16 @@
+.well.well-sm
+  = search_form_for @q2, as: :q2, url: request.path, class: 'form-inline' do |f|
+    = f.search_field :first_name_or_last_name_cont, placeholder: 'Author name'
+
+    = f.submit 'Filter', class: 'btn btn-primary'
+    = link_to 'Reset', request.path, class: 'btn btn-default'
+
+
+  = form_tag authors_export_to_csv_index_path, class: 'form-inline export-to-csv-async' do |f|
+    - params[:q2] && params[:q2].each do |k,v|
+      = hidden_field_tag "q[#{k}]", v
+
+    Leave blank to export all
+    %br
+    = select_tag 'csv_fields[]', options_for_select(ExportToCSVService::AuthorFields.keys), multiple: true
+    = submit_tag 'Export', class: 'btn btn-success valign-top'

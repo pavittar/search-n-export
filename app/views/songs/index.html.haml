@@ -1,0 +1,29 @@
+%h1 Listing Songs
+
+= render 'application/song_search'
+
+%table.table.table-condensed
+  %thead
+    %tr
+      %th Author
+      %th Title
+      %th Year
+      %th
+      %th
+      %th= link_to 'New Song', new_song_path, class: 'btn btn-primary btn-xs'
+
+  %tbody
+    - @songs.each do |song|
+      %tr
+        %td= song.author.try(:name)
+        %td= song.title
+        %td= song.year
+        %td= link_to 'Show', song
+        %td= link_to 'Edit', edit_song_path(song)
+        %td= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' }
+%br
+
+.pull-left
+  = page_entries_info @songs
+.pull-right
+  = paginate @songs

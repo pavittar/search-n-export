@@ -1,0 +1,26 @@
+%h1 Listing downloads
+
+%table.table.table-condensed
+  %thead
+    %tr
+      %th Type
+      %th Created
+      %th Name
+      %th Download
+
+  %tbody
+    - @downloads.each do |download|
+      %tr
+        %td= download.kind.upcase
+        %td= download.created_at
+        %td= download.filename
+        %td
+          - if download.completed?
+            = link_to 'Download', download_path(download)
+          - else
+            = download.status
+
+.pull-left
+  = page_entries_info @downloads
+.pull-right
+  = paginate @downloads

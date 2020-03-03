@@ -1,0 +1,34 @@
+.col-md-6
+  %h2 Songs
+  = render 'application/song_search'
+
+  %table.table.table-condensed
+    %tr
+      %th= sort_link(@q1, :title)
+      %th= sort_link(@q1, :aurthor_first_name, 'Author')
+      %th= sort_link(@q1, :year)
+
+    - @songs.each do |song|
+      %tr
+        %td= song.title
+        %td= song.author.try(:name)
+        %td= song.year
+
+  .text-center
+    = link_to "See more songs", songs_path
+
+.col-md-6
+  %h2 Authors
+  = render 'application/author_search'
+
+  %table.table.table-condensed
+    %tr
+      %th= sort_link(@q2, :first_name, [:first_name, 'last_name asc'], 'Name')
+      %th Songs
+    - @authors.each do |author|
+      %tr
+        %td= author.name
+        %td= author.songs_count
+
+  .text-center
+    = link_to "See more authors", authors_path
